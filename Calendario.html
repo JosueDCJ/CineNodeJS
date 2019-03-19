@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Calendario</title>
+	<link rel="stylesheet" type="text/css" href="css/estilos.css">
+	
+</head>
+<body onload="cargarpeliculasdelmesyanno()">
+	<h2>Febrero 2019</h2>
+	<input class="datos" type="text" placeholder="Mes" id="mesactual" value="3">
+	<input class="datos" type="text" placeholder="Año" id="annoactual" value="2019">
+	<table class="main">
+			<tr>
+				<div>
+					<td class="dia">Dom</td>	
+				</div>
+				<div>
+					<td class="dia">Lun</td>	
+				</div>
+				<div>
+					<td class="dia">Mar</td>	
+				</div>
+				<div>	
+					<td class="dia">Mie</td>
+				</div>
+				<div>	
+					<td class="dia">Jue</td>
+				</div>
+				<div>	
+					<td class="dia">Vie</td>	
+				</div>
+				<div>
+					<td class="dia">Sab</td>
+				</div>
+			</tr>
+
+			<tr>
+				<div>
+					<td class="numero"></td>	
+				</div>
+				<div>
+					<td class="numero"></td>	
+				</div>
+				<div>
+					<td class="numero"></td>	
+				</div>
+				<div>	
+					<td class="numero"></td>
+				</div>
+				<div>	
+					<td class="numero"></td>
+				</div>
+				
+				<td class="numero">01<div id="1"></div></td>	
+				<td class="numero">02<div id="2"></div></td>	
+			</tr>
+
+			<tr>
+				<td class="numero">03<div id="3"></div></td>
+				<td class="numero">04<div id="4"></div></td>
+				<td class="numero">05<div id="5"></div></td>
+				<td class="numero">06<div id="6"></div></td>
+				<td class="numero">07<div id="7"></div></td>
+				<td class="numero">08<div id="8"></div></td>
+				<td class="numero">09<div id="9"></div></td>
+
+			</tr>
+
+			<tr>
+				<td class="numero">10<div id="10"></div></td>
+				<td class="numero">11<div id="11"></div></td>
+				<td class="numero">12<div id="12"></div></td>
+				<td class="numero">13<div id="13"></div></td>
+				<td class="numero">14<div id="14"></div></td>
+				<td class="numero">15<div id="15"></div></td>
+				<td class="numero">16<div id="16"></div></td>
+			</tr>
+
+
+			<tr>
+				<td class="numero">17<div id="17"></div></td>
+				<td class="numero">18<div id="18"></div></td>
+				<td class="numero">19<div id="19"></div></td>
+				<td class="numero">20<div id="20"></div></td>
+				<td class="numero">21<div id="21"></div></td>
+				<td class="numero">22<div id="22"></div></td>
+				<td class="numero">23<div id="23"></div></td>
+			</tr>
+
+
+			<tr>
+				<td class="numero">24<div id="24"></div></td>
+				<td class="numero">25<div id="25"></div></td>
+				<td class="numero">26<div id="26"></div></td>
+				<td class="numero">27<div id="27"></div></td>
+				<td class="numero">28<div id="28"></div></td>
+				<td class="numero"><div></div></td>
+				<td class="numero"><div></div></td>
+			</tr>
+	</table>
+	
+
+	<script src="jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="classpelifrontend.js"></script>
+	<script>
+
+			   function agregaimgdepeliculaaldiv(imgenbase64,iddeldiv,iddelapelicula)
+    			{
+       				 document.getElementById(iddeldiv).innerHTML += "<img src='"+imgenbase64+"' height='80' width='80' id= "+iddelapelicula+" onclick='cargataquilla(\""+iddelapelicula+"\")'>"; //  El fec dentro del getElementById es porque solo reconoce los numeros y hay que concatenar el fec
+    			}
+
+    
+  				function cargataquilla(id)
+       			 {
+             		let clasepeliculainstanciada = new _Pelicula(id);
+              		 clasepeliculainstanciada.Seleccionarporid().then(function(response) {
+             	  			localStorage.setItem("peliculaseleccionada",JSON.stringify(response));
+                  			 location.href="taquilla.html"
+					}, function(error) {
+ 							console.log(error);
+						})
+
+          		 }
+
+
+
+    		function cargarpeliculasdelmesyanno()
+    			{
+        			let clasepeliculainstanciada = new _Pelicula();
+               		clasepeliculainstanciada.peliculapormesyanno(document.getElementById("mesactual").value,document.getElementById("annoactual").value).then(function(response) {
+                   
+ 						for(var elemento in response)
+     						{
+         						var fechadelapeliculaactual = new Date(response[elemento].Fecha);
+         						agregaimgdepeliculaaldiv(response[elemento].Imagen,fechadelapeliculaactual.getDate() +1,response[elemento]._id);        
+     						}             
+					}, function(error) {
+ 							console.log(error);
+						});
+        
+    			}
+
+	</script>
+</body>
+</html>

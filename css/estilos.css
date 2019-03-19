@@ -1,0 +1,81 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background: url("../img/fondo3.jpg") fixed;
+	font-family: Arial;
+}
+
+
+
+img {
+	border-radius: 30px;
+	cursor: pointer;
+}
+
+
+
+
+
+.boton { 
+	margin: 20px auto;
+	display: block;
+	padding: 10px 30px;
+	border: solid #000 1px;
+	background: rgb(255,165,65,.8);
+	font-size: 18px;
+
+ }
+
+ .boton:active{
+ 	background: #000;
+ 	color: orange;
+ 	border: 1px solid orange;
+ }
+
+ .datos {
+ 	padding: 15px 10px;
+ 	display: inline-block;
+ 	margin-top: 20px;
+ 	margin-left: 330px;
+ 	border-radius: 20px;
+ 	border: solid 2px #000;
+ 	background: rgb(255,255,255,.8)
+ }
+
+ .dia { 
+ 	padding: 15px;
+	border: 1px solid orange;
+	text-align: center;
+	background: #000;
+	color: orange;
+  }
+
+h2 { 
+	text-align:center; 
+	padding: 30px;
+	background: rgb(0,0,0,.7);
+	color:#fff
+ }
+
+.main{
+	margin: 20px auto;
+	background: rgb(0,0,0,.8);
+	width: 90%;
+	color: #fff;
+	max-width: 1000px;
+}
+
+.numero {
+	padding: 30px;
+	border: 1px solid orange;
+	text-align: center;
+}
+
+.numero:hover { 
+		background: rgb(255,165,65,.6);
+		color: #000;
+ }
